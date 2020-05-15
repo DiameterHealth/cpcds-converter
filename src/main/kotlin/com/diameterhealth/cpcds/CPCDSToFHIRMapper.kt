@@ -260,8 +260,6 @@ fun mapToExplanationOfBenefits(row: CPCDSRow): ExplanationOfBenefit {
 
     //                                                                 TODO: Unknown mapping row.pharmacyServiceTypeCode
 
-    //                                                                    TODO: Unknown mapping row.patientResidenceCode
-
     if (!row.claimBillingProviderNPI.isNullOrBlank()) {
         eob.provider =
             reference(

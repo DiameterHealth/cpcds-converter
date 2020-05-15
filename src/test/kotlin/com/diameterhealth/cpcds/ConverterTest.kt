@@ -1,20 +1,24 @@
+/* COPYRIGHT NOTICE Copyright (c) 2019-2020, Diameter Health Inc.
+
+  This code is property of Diameter Health and may only used in accordance with licensing terms of Diameter Health
+  software. Redistribution and use of this code not in accordance with licensing terms of Diameter Health, Inc.
+  is expressly forbidden. If you have received this code without a licensing contract with Diameter Health, notify
+  info@diameterhealth.com immediately. You are not authorized to disclose, copy, distribute or retain this code without
+  written authorization from Diameter Health Inc. This code contains proprietary, privileged and confidential
+  information to Diameter Health, Inc.
+*/
 package com.diameterhealth.cpcds
 
 import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.anyOrNull
 import com.nhaarman.mockitokotlin2.times
 import com.nhaarman.mockitokotlin2.verify
 import org.hl7.fhir.r4.model.ExplanationOfBenefit
-import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import org.mockito.junit.jupiter.MockitoExtension
 
-// @ExtendWith(MockitoExtension.class)
 class ConverterTest {
 
     @Mock

@@ -35,6 +35,7 @@ Once it is built use the following command to generate a small file:
 ```./run_synthea --exporter.cpcds.export true```
 
 This command will generate a VERY large file:
+
 ```./run_synthea -p 5000 --exporter.cpcds.export true```
 
 ## Running 
@@ -42,3 +43,7 @@ This command will generate a VERY large file:
 To run this tool you need use the command:
 
 ```gradle execute --args="-i [CPCDS CSV File] -f [FHIR Server base URL]"```
+
+If you are using the Hapi Server referenced above then the FHIR Server base URL is probably 
+
+````http://localhost:8080/hapi-fhir-jpaserver/fhir````
