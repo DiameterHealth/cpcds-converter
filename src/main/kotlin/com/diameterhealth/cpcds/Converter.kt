@@ -13,6 +13,7 @@ import com.github.doyaaaaaken.kotlincsv.dsl.csvReader
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.required
+import org.hl7.fhir.r4.model.ExplanationOfBenefit
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -31,12 +32,16 @@ fun main(args: Array<String>) {
     println("Delay by: ${delay}")
 
     val sourceAdapter = HapiExplanationOfBenefitsFHIRSourceAdapter(fhirUrl)
-    csvReader().readAllWithHeader(File(input))
+    convert(File(input), sourceAdapter, delay)
+}
+
+fun convert(file: File, fhirSourceAdapter: FHIRSourceAdapter<ExplanationOfBenefit>, delay: String?) {
+    csvReader().readAllWithHeader(file)
         .map(::mapToCPCDSRow)
         .forEach {
-            writeRow(it, sourceAdapter)
+            writeRow(it, fhirSourceAdapter)
             if (delay != null) {
-                TimeUnit.MILLISECONDS.sleep(delay!!.toLong())
+                TimeUnit.MILLISECONDS.sleep(delay.toLong())
             }
         }
 }

@@ -260,8 +260,6 @@ fun mapToExplanationOfBenefits(row: CPCDSRow): ExplanationOfBenefit {
 
     //                                                                 TODO: Unknown mapping row.pharmacyServiceTypeCode
 
-    //                                                                    TODO: Unknown mapping row.patientResidenceCode
-
     if (!row.claimBillingProviderNPI.isNullOrBlank()) {
         eob.provider =
             reference(
@@ -448,6 +446,7 @@ fun mapToExplanationOfBenefits(row: CPCDSRow): ExplanationOfBenefit {
     // TODO: The following are also ambiguous as to what level they go at, so I am repeating them
     // TODO: Line Benefit Payment Status is listed in the mapping spreadsheet as, at this level, mapping to a category
     // but it is not clear what it would be the category of
+    // Diff on type of EoB
     addAdjudicationReason(
         eob,
         row.lineBenefitPaymentStatus,
@@ -610,7 +609,7 @@ private fun mapToItem(row: CPCDSRow): ExplanationOfBenefit.ItemComponent {
     }
 
     if (!row.compoundCode.isNullOrBlank()) {
-        // TODO: no idea what to do if both nationalDrugCOde and compountCode are specified
+        // TODO: no idea what to do if both nationalDrugCOde and compoundCode are specified
         // I am making it a modifier for now, but I don't know if that is correct
         if (item.hasProductOrService()) {
             addModifier(
@@ -624,7 +623,7 @@ private fun mapToItem(row: CPCDSRow): ExplanationOfBenefit.ItemComponent {
     }
 
     if (!row.procedureCodeCPTHCPCS.isNullOrBlank()) {
-        // TODO: no idea what to do if both nationalDrugCOde and / or compountCode and procedureCodeCPTHCPCS are specified
+        // TODO: no idea what to do if both nationalDrugCOde and / or compoundCode and procedureCodeCPTHCPCS are specified
         // I am making it a modifier for now, but I don't know if that is correct
         if (item.hasProductOrService()) {
             addModifier(

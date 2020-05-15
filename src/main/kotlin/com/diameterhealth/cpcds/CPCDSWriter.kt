@@ -27,6 +27,7 @@ fun writeRow(row: CPCDSRow, fhirSourceAdapter: FHIRSourceAdapter<ExplanationOfBe
     )
 
     if (context.update) {
+        // TODO: Handle lastUpdateDate
         fhirSourceAdapter.update(context.updateId!!, context.explanationOfBenefit)
         println("Updated EoB: ${context.updateId} at ${nowToString()}")
     } else {

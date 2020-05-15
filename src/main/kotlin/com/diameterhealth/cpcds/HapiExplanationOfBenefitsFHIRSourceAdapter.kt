@@ -16,7 +16,6 @@ import org.hl7.fhir.r4.model.Bundle
 import org.hl7.fhir.r4.model.ExplanationOfBenefit
 
 class HapiExplanationOfBenefitsFHIRSourceAdapter(val fhirUrl: String) : FHIRSourceAdapter<ExplanationOfBenefit> {
-/* "http://localhost:8080/hapi-fhir-jpaserver/fhir" */
 
     override fun exists(resource: ExplanationOfBenefit): ExplanationOfBenefit? {
         val bundle = fhirClient()
