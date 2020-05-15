@@ -30,7 +30,11 @@ dependencies {
     implementation ("ca.uhn.hapi.fhir:hapi-fhir-client-okhttp:${hapiVersion}")
     implementation ("ca.uhn.hapi.fhir:hapi-fhir-structures-r4:${hapiVersion}")
     implementation ("com.google.code.gson:gson:2.8.6")
+    implementation ("com.google.guava:guava:29.0-jre")
     testCompile ("org.junit.jupiter:junit-jupiter:5.6.2")
+    testCompile ("org.mockito:mockito-core:3.3.3")
+    testCompile ("org.mockito:mockito-junit-jupiter:3.3.3")
+    testCompile ("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 }
 
 tasks.test {

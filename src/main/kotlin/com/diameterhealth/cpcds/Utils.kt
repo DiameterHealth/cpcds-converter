@@ -9,6 +9,8 @@
 */
 package com.diameterhealth.cpcds
 
+import com.google.common.io.Resources
+import java.io.File
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -19,3 +21,5 @@ fun nowToString() = DateTimeFormatter.ISO_INSTANT.format(Instant.now())
 
 fun dateToLocalDateTime(date: Date?): LocalDateTime? =
     if (date == null) null else date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+
+fun String.asResourceFile(): File = File(Resources.getResource(this).file)
