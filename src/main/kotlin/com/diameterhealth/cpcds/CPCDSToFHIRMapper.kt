@@ -35,7 +35,13 @@ fun mapToExplanationOfBenefits(row: CPCDSRow): ExplanationOfBenefit {
         )        // TODO: Made up system
     }
 
-    if (!row.memberId.isNullOrBlank()) {
+    if (!row.patientAccountNumber.isNullOrBlank()) {
+        eob.patient =
+            reference(
+                row.patientAccountNumber,
+                "Patient"
+            )
+    } else if (!row.memberId.isNullOrBlank()) {
         eob.patient =
             reference(
                 row.memberId,
@@ -911,11 +917,7 @@ private fun addSupportingInfo(
 }
 
 private fun reference(id: String?, type: String? = null): Reference {
-    return Reference().setIdentifier(
-        identifier(
-            id
-        )
-    ).setType(type)
+    return Reference().setReference("${type}/${id}")
 }
 
 

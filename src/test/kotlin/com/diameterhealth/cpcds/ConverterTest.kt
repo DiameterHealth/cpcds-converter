@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
+import org.junit.jupiter.api.Assertions.*
 
 class ConverterTest {
 
@@ -40,6 +41,21 @@ class ConverterTest {
         verify(sourceAdapter).exists(any())
         verify(sourceAdapter).create(any())
         verify(sourceAdapter, times(0)).update(any(), any())
+    }
+
+
+    @Test
+    fun `one claim is has correct patient reference`() {
+        Mockito.`when`(sourceAdapter.exists(any())).thenReturn(null)
+        Mockito.`when`(sourceAdapter.create(any())).thenAnswer { invocation ->
+                val eob = invocation.arguments[0] as ExplanationOfBenefit
+                assertEquals("Patient/57ecca3a-7157-414f-bc00-1345618b9656", eob.patient.reference)
+
+                "TEST_ID"
+        }
+
+        val file = "data/CPCDS_Claims_one_claim.csv".asResourceFile()
+        convert(file, sourceAdapter, null)
     }
 
     @Test
